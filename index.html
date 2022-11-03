@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>zg::space</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Hairline&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: sans-serif;
+        background-color: #15232f;
+        color: #FFE;
+        font-size: 1em;
+        margin: 0;
+    }
+
+    html ::selection {
+        background: #FFE;
+        color: #15232f;
+        text-shadow: none;
+    }
+
+    main {
+        max-width: 40em;
+        margin: 2em auto 4em;
+    }
+
+    h1 {
+        font-size: 4em;
+        text-align: center;
+        font-family: 'Bungee Hairline', sans-serif;
+        text-shadow: 0 0 10px #000;
+    }
+
+    h2 {
+        font-size: 2em;
+        font-family: 'Bungee Hairline', sans-serif;
+        text-align: center;
+        text-shadow: 0 0 5px #000;
+        margin-top: 1em;
+    }
+
+    a, a:visited {
+        color: #ACD9FF
+    }
+
+    a:hover {
+        color: #FFE
+    }
+
+    #users {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .user{
+        box-sizing: border-box;
+        background-color: #192835;
+        padding: 1em;
+        width: 100px;
+        display: block;
+        text-decoration: none;
+        color: #FFF;
+        border-radius: 2px;
+        cursor: pointer;
+        font-family: 'Courier New', Courier, monospace;
+        text-align: center;
+        box-shadow: 0 0 0 #000A;
+        font-size: 1.2em;
+        transition: background-color 0.2s;
+    }
+
+    .user:hover {
+        background-color: #283d4f;
+    }
+
+</style>
+</head>
+<body>
+    <main>
+        <h1>ZG space</h1>
+    
+        <h2>Članovi servera</h2>
+
+        <div id="users">
+            <a class="user" href="/blin">blin</a>
+            <a class="user" href="/ljuba">ljuba</a>
+            <a class="user" href="/vuk61">vuk61</a>
+        </div>
+
+        <h2>Uputstvo za pristup</h2>
+
+        <p>Odaberite korisničko ime kraće od deset karaktera (samo mala slova su dozvoljena). Javite mi to ime porukom na <em>Teams</em>-u, i poslaću vam šfru za pristup.</p>
+        <ul>
+            <li><strong>WINDOWS:</strong> Instalirati <a href="https://git-scm.com/download/win">ssh agent</a> na računaru, i <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">SSH ekstenziju</a> za VS code. U VS Code-u pritisnuti zelenu strelicu u donjem levom uglu. Padajući meni će se otvoriti. Odabrati <code>Connect to host</code>, zatim <code>Add new host</code>. Za hostname upisati IP adresu ovog servera tj. <code>142.93.100.228</code>. Podešavanja sačuvati lokalno. Za password uneti šifru koja vam je data.</li>
+            <li><strong>LINUX:</strong> Na linuxu drugačije instalirate ssh. Najverovatnije je da vaša distibucija ima već preinstaliran ssh. Sve ostalo je isto.</li>
+        </ul>
+        <p>Kada ste jednom konektovani, sa desne strane VS Coda-a možete naći <em>File Explorer</em>. Otvorite vaš <em>home</em> direktorijum. Njegova putanja je <code>/home/VAS_USERNAME</code>. Sve što budete radili, radite unutar ovog direktorijuma.</p> <p>U direktorijumu <code>www</code> nalazi se vaša veb prezentacija. Glavna stranica je imenovana <code>index.html</code></p>
+
+        <h2>Komandna linija</h2>
+        <p>Sa <em>VS Code</em>-om možete koristiti terminal koji je pokrenut unutar servera. Korisno je znati naredne komande:</p>
+        <ul>
+            <li><code>pwd</code> ispisuje putanju trenutno otvorenog direktorijuma</li>
+            <li><code>ls</code> ispisuje sadržaj trenutno otvorenog direktorijuma</li>
+            <li><code>cd IME</code> menja direktorijum</li>
+            <li><code>mkdir IME</code> kreira direktorijum</li>
+            <li><code>cat IME</code> prikazuje sadržaj tekstualne datoteke</li>
+            <li><code>passwd</code> pokreće promenu lozinke</li>
+        </ul>
+        <p>Imena fajlova i direktorijuma su osetljiva na velika i mala slova.</p>
+        <p>Za sva pitanja i nedoumice pišite na <em>Teams</em>-u.</p>
+        <p style="text-align:center; font-style: italic;  margin-top: 4em;">With a great power comes a great responsibility!</p>
+    </main>
+</body>
+</html>
