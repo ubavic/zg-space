@@ -14,7 +14,7 @@ var timeRan time.Time
 
 func getUsers() []string {
 
-	if time.Now().Sub(timeRan).Seconds() < 2 {
+	if time.Now().Sub(timeRan).Seconds() > 2 {
 		timeRan = time.Now()
 
 		cmd := exec.Command("who")
