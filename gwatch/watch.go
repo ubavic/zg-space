@@ -42,15 +42,15 @@ func getUsers() []string {
 }
 
 func main() {
-	http.HandleFunc("/users/", func(w http.ResponseWriter, r *http.Request) {
+
+	timeRan = time.Now()
+
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		users := getUsers()
-		fmt.Println(users)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusCreated)
 		json.NewEncoder(w).Encode(users)
 	})
-
-	timeRan = time.Now()
 
 	fmt.Printf("Starting on :9990")
 	http.ListenAndServe(":9990", nil)
