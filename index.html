@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>zg::space</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bungee+Hairline&display=swap" rel="stylesheet">
@@ -59,7 +60,6 @@
         box-sizing: border-box;
         background-color: #192835;
         padding: 1em;
-        width: 100px;
         display: block;
         text-decoration: none;
         color: #FFF;
@@ -70,10 +70,27 @@
         box-shadow: 0 0 0 #000A;
         font-size: 1.2em;
         transition: background-color 0.2s;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
     }
 
     .user:hover {
         background-color: #283d4f;
+    }
+
+    .status {
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        background-color: #15232f;
+        transition: background-color 0.2s;
+    }
+
+    .online {
+        background-color: #9F9;
     }
 
 </style>
@@ -85,9 +102,9 @@
         <h2>Članovi servera</h2>
 
         <div id="users">
-            <a class="user" href="/blin">blin</a>
-            <a class="user" href="/ljuba">ljuba</a>
-            <a class="user" href="/vuk61">vuk61</a>
+            <a class="user" href="/~blin" id="blin">blin<div class="status"></div></a>
+            <a class="user" href="/~ljuba" id="ljuba">ljuba<div class="status"></div></a>
+            <a class="user" href="/~vuk61" id="vuk61">vuk61<div class="status"></div></a>
         </div>
 
         <h2>Uputstvo za pristup</h2>
@@ -111,7 +128,26 @@
         </ul>
         <p>Imena fajlova i direktorijuma su osetljiva na velika i mala slova.</p>
         <p>Za sva pitanja i nedoumice pišite na <em>Teams</em>-u.</p>
-        <p style="text-align:center; font-style: italic;  margin-top: 4em;">With a great power comes a great responsibility!</p>
+        <p style="text-align:center; font-style: italic; margin-top: 4em;">With a great power comes a great responsibility!</p>
     </main>
 </body>
+<script>
+const populateOnlineStatus = users => 
+    [...document.getElementById("users").children]
+    .map(c => 
+        users.includes(c.textContent.trim()) ? 
+            c.lastChild.classList.add("online") : c.lastChild.classList.remove("online")
+    )
+
+const getOnlineUsers = () => 
+    fetch('/users')
+    .then(r => r.json())
+    .then(populateOnlineStatus)
+    .catch(() => {})
+
+window.onload = () => {
+    getOnlineUsers()
+    setInterval(getOnlineUsers, 2000)
+}
+</script>
 </html>
