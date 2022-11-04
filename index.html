@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>zg::space</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,9 +15,11 @@
         color: #FFE;
         font-size: 1em;
         margin: 0;
+        background: url("./noise.png");
+        background-attachment: fixed;
     }
 
-    body::selection {
+    * ::selection {
         background: #FFE;
         color: #15232f;
         text-shadow: none;
@@ -25,6 +28,7 @@
     main {
         max-width: 40em;
         margin: 2em auto 4em;
+        padding: 0 0.5em;
     }
 
     h1 {
@@ -39,22 +43,21 @@
         font-family: 'Bungee Hairline', sans-serif;
         text-align: center;
         text-shadow: 0 0 5px #000;
-        margin-top: 1em;
+        margin-top: 2em;
     }
 
     a, a:visited {
-        color: #ACD9FF
+        color: #ACD9FF;
     }
 
     a:hover {
-        color: #FFE
+        color: #FFE;
     }
 
     #users {
         display: flex;
         flex-direction: row;
         gap: 20px;
-        margin: 5em 0;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -73,11 +76,11 @@
 
     .user {
         box-sizing: border-box;
-        background-color: #192835;
+        background-color: #243442;
         padding: 1em 1em 0.8em;
         display: block;
         text-decoration: none;
-        color: #FFF;
+        color: #FFE;
         border-radius: 2px;
         cursor: pointer;
         font-family: 'Courier New', Courier, monospace;
@@ -166,7 +169,7 @@ const getOnlineUsers = () =>
 
 window.onload = () => {
     getOnlineUsers()
-    setInterval(getOnlineUsers, 2000)
+    setInterval(getOnlineUsers, 1000)
 }
 </script>
 </html>
