@@ -9,45 +9,57 @@ import (
 	"time"
 )
 
-var usersCache map[string]bool
+var homeDirs []string
+var usersCache []string
 var timeRan time.Time
 
+func contains(s []string, str string) bool {
+	for _, val := range s {
+		if val == str {
+			return true
+		}
+	}
+
+	return false
+}
+
 func getUsers() []string {
-	if time.Now().Sub(timeRan).Seconds() > 2 {
+	if time.Now().Sub(timeRan).Seconds() > 1 {
 		timeRan = time.Now()
 
 		cmd := exec.Command("ps", "-ef")
 		stdout, err := cmd.Output()
+
+		users := make([]string, len(homeDirs))
 
 		if err != nil {
 			fmt.Println(err.Error())
 			panic(0)
 		} else {
 			lines := strings.Split(string(stdout), "\n")
+
 			for _, x := range lines {
 				fields := strings.Fields(x)
 
-				if len(fields) != 0 {
-					user := fields[0]
+				if len(fields) == 0 {
+					continue
+				}
 
-					if _, ok := usersCache[user]; ok {
-						usersCache[user] = true
-					} else {
-						usersCache[user] = false
-					}
+				user := fields[0]
+
+				var regularUser = contains(homeDirs, user)
+				var alreadyOnList = contains(users, user)
+
+				if regularUser && !alreadyOnList {
+					users = append(users, user)
 				}
 			}
+
+			usersCache = users
 		}
 	}
 
-	users := make([]string, len(usersCache)+2)
-	for k, v := range usersCache {
-		if v {
-			users = append(users, k)
-		}
-	}
-
-	return users
+	return usersCache
 }
 
 func main() {
@@ -59,13 +71,12 @@ func main() {
 		panic(0)
 	}
 
-	homeDirs := strings.Fields(string(stdout))
+	homeDirs_ := strings.Fields(string(stdout))
+	usersCache = make([]string, len(homeDirs))
 
-	usersCache = make(map[string]bool, len(homeDirs))
-
-	for _, homeDir := range homeDirs {
+	for _, homeDir := range homeDirs_ {
 		if homeDir != "" {
-			usersCache[homeDir] = false
+			homeDirs = append(homeDirs, homeDir)
 		}
 	}
 
