@@ -32,13 +32,15 @@ func getUsers() []string {
 
 					if _, ok := usersCache[user]; ok {
 						usersCache[user] = true
+					} else {
+						usersCache[user] = false
 					}
 				}
 			}
 		}
 	}
 
-	users := make([]string, len(usersCache))
+	users := make([]string, len(usersCache)+2)
 	for k, v := range usersCache {
 		if v {
 			users = append(users, k)
