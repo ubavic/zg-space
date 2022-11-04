@@ -55,6 +55,8 @@
         flex-direction: row;
         gap: 20px;
         margin: 5em 0;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     code {
@@ -63,43 +65,44 @@
         border-radius: 2px;
     }
 
-    .user{
+    pre {
+        padding: 0.5em 1em;
+        background-color: #121b24;
+        border-radius: 2px;
+    }
+
+    .user {
         box-sizing: border-box;
         background-color: #192835;
-        padding: 1em;
+        padding: 1em 1em 0.8em;
         display: block;
         text-decoration: none;
         color: #FFF;
         border-radius: 2px;
         cursor: pointer;
         font-family: 'Courier New', Courier, monospace;
-        text-align: center;
-        box-shadow: 0 0 0 #000A;
         font-size: 1.2em;
         transition: background-color 0.2s;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
     }
 
     .user:hover {
         background-color: #283d4f;
     }
 
-    .status {
-        width: 10px;
-        height: 10px;
-        border-radius: 5px;
-        background-color: #15232f;
-        transition: background-color 0.2s;
-    }
-
     .online {
         background-color: #9F9;
+        color: #15232f;
     }
 
+    .online:hover {
+        background-color: #b6fdb6;
+    }
+
+    footer {
+        text-align:center;
+        font-style: italic;
+        margin-top: 4em;
+    }
 </style>
 </head>
 <body>
@@ -109,19 +112,28 @@
         <h2>Članovi servera</h2>
 
         <div id="users">
-            <a class="user" href="/~blin" id="blin">blin<div class="status"></div></a>
-            <a class="user" href="/~ljuba" id="ljuba">ljuba<div class="status"></div></a>
-            <a class="user" href="/~vuk61" id="vuk61">vuk61<div class="status"></div></a>
+            <a class="user" href="/~blin" id="blin">blin</a>
+            <a class="user" href="/~celar" id="celar">celar</a>
+            <a class="user" href="/~kosta" id="kosta">kosta</a>
+            <a class="user" href="/~ljuba" id="ljuba">ljuba</a>
+            <a class="user" href="/~mastermare" id="mastermare">mastermare</a>
+            <a class="user" href="/~nikola" id="nikola">nikola</a>
+            <a class="user" href="/~otomovic" id="otomovic">otomovic</a>
+            <a class="user" href="/~vojin" id="vojin">vojin</a>
+            <a class="user" href="/~vuk61" id="vuk61">vuk61</a>
+            <a class="user" href="/~wildape" id="wiladpe">wildape</a>
         </div>
 
         <h2>Uputstvo za pristup</h2>
 
         <p>Odaberite korisničko ime kraće od deset karaktera (samo mala slova su dozvoljena). Javite mi to ime porukom na <em>Teams</em>-u, i poslaću vam šfru za pristup.</p>
-        <ul>
-            <li><strong>WINDOWS:</strong> Instalirati <a href="https://git-scm.com/download/win">ssh agent</a> na računaru, i <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">SSH ekstenziju</a> za VS code. U VS Code-u pritisnuti zelenu strelicu u donjem levom uglu. Padajući meni će se otvoriti. Odabrati <code>Connect to host</code>, zatim <code>Add new host</code>. Za hostname upisati IP adresu ovog servera tj. <code>142.93.100.228</code>. Podešavanja sačuvati lokalno. Za password uneti šifru koja vam je data.</li>
-            <li><strong>LINUX:</strong> Na linuxu drugačije instalirate ssh. Najverovatnije je da vaša distibucija ima već preinstaliran ssh. Sve ostalo je isto.</li>
-        </ul>
+        <p><em>WINDOWS:</em> Instalirati <a href="https://git-scm.com/download/win">ssh agent</a> na računaru, i <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">SSH ekstenziju</a> za VS code. U VS Code-u pritisnuti zelenu strelicu u donjem levom uglu. Padajući meni će se otvoriti. Odabrati <code>Connect to host</code>, zatim <code>Add new host</code>. Za hostname upisati IP adresu ovog servera tj. <code>142.93.100.228</code>. Podešavanja sačuvati lokalno na proizvoljnu destinaciju. Nakon kreiranja podešavanja, ponovi kliknuti na zelenu strelicu a zatim na <code>Open SSH configuration file...</code>. U konfiguracioni fajlu dodati <code>user VAS_USERNAME</code> i promene sačuvati. Još jednom pritisnuti zelenu strelicu i ovaj put odabrati <code>Connect to Host...</code>. Za password uneti šifru koja vam je data.</p>
+        <p><em>LINUX:</em> Na linuxu drugačije instalirate ssh. Najverovatnije je da vaša distibucija ima već preinstaliran ssh. Sve ostalo je isto.</p>
         <p>Kada ste jednom konektovani, sa desne strane VS Coda-a možete naći <em>File Explorer</em>. Otvorite vaš <em>home</em> direktorijum. Njegova putanja je <code>/home/VAS_USERNAME</code>. Sve što budete radili, radite unutar ovog direktorijuma.</p> <p>U direktorijumu <code>www</code> nalazi se vaša veb prezentacija. Glavna stranica je imenovana <code>index.html</code></p>
+
+        <p>Ako ne želite da koristite <em>VS Code</em>, dovoljno je da u <em>PowerShell</em>-u (terminalu) pokrenete <code>ssh</code> sa:</p>
+
+        <pre>ssh VAS_USERNAME@142.93.100.228</pre>
 
         <h2>Komandna linija</h2>
         <p>Sa <em>VS Code</em>-om možete koristiti terminal koji je pokrenut unutar servera. Korisno je znati naredne komande:</p>
@@ -134,8 +146,8 @@
             <li><code>passwd</code> pokreće promenu lozinke</li>
         </ul>
         <p>Imena fajlova i direktorijuma su osetljiva na velika i mala slova.</p>
-        <p>Za sva pitanja i nedoumice pišite na <em>Teams</em>-u.</p>
-        <p style="text-align:center; font-style: italic; margin-top: 4em;">With a great power comes a great responsibility!</p>
+        <p>Za više informacija pogledati <a href="https://ubavic.rs/linux_terminal/">Linux tutorijal</a>.</p>
+        <footer>With a great power comes a great responsibility!</footer>
     </main>
 </body>
 <script>
@@ -143,7 +155,7 @@ const populateOnlineStatus = users =>
     [...document.getElementById("users").children]
     .map(c => 
         users.includes(c.textContent.trim()) ? 
-            c.lastChild.classList.add("online") : c.lastChild.classList.remove("online")
+            c.classList.add("online") : c.classList.remove("online")
     )
 
 const getOnlineUsers = () => 
