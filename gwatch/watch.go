@@ -9,8 +9,8 @@ import (
 	"time"
 )
 
-var homeDirs []string
-var usersCache []string
+var homeDirs []string = []string{}
+var usersCache []string = []string{}
 var timeRan time.Time
 
 func contains(s []string, str string) bool {
@@ -30,7 +30,7 @@ func getUsers() []string {
 		cmd := exec.Command("ps", "-ef")
 		stdout, err := cmd.Output()
 
-		users := make([]string, len(homeDirs))
+		users := make([]string, 0)
 
 		if err != nil {
 			fmt.Println(err.Error())
@@ -71,13 +71,10 @@ func main() {
 		panic(0)
 	}
 
-	homeDirs_ := strings.Fields(string(stdout))
-	usersCache = make([]string, len(homeDirs))
+	homeDirsFields := strings.Fields(string(stdout))
 
-	for _, homeDir := range homeDirs_ {
-		if homeDir != "" {
-			homeDirs = append(homeDirs, homeDir)
-		}
+	for _, homeDir := range homeDirsFields {
+		homeDirs = append(homeDirs, homeDir)
 	}
 
 	timeRan = time.Now()
